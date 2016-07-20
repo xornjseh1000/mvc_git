@@ -1,9 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
-
-<link rel="stylesheet" href="../css/global.css" />
-    <jsp:include page="${context}/global/top.jsp"/>
-    <jsp:include page="${context}/global/header.jsp"/>
-   <body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   <div id="box" class="memberClass box">
   <h1>성적관리</h1><br/>
             <div style="width:300px;margin:0 auto;text-align: left;">
@@ -18,9 +13,7 @@
 			
 			</ol>	
 			</div>	
-    <a href="${context}/index.jsp">
+    <a href="${context}/home.jsp">
     <img alt="home" src="${img}/home.png"style="width:10%">
     </a>
 </div>
-</body>
-</html>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      
-  <jsp:include page="../../global/top.jsp"/>
-    <jsp:include page="../../global/header.jsp"/>
+  <jsp:include page="../global/top.jsp"/>
+    <jsp:include page="../global/header.jsp"/>
  <div class ="box">
         <h1>로그인</h1><br />
   		<form action="${context}/member/result/login_result.jsp" method = "post">
@@ -12,6 +12,6 @@
 	           <input type="submit" value="취소" />
 	           		   	 	</form>
 		</div>
-    <jsp:include page="../../global/footer.jsp"/>
-    <jsp:include page="../../global/end.jsp"/>
+    <jsp:include page="../global/footer.jsp"/>
+    <jsp:include page="../global/end.jsp"/>
   >
