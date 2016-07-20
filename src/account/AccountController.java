@@ -8,7 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("/bank/main.do")
+@WebServlet({"/account/main.do","/account/count.do","/account/delete.do","/account/diposit.do","/account/list.do","/account/regist.do","/account/search.do",
+	"/account/update.do","/account/withdraw.do"})
 public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

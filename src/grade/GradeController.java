@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/grade/main.do")
+@WebServlet({"/grade/main.do","/grade/count.do","/grade/delete.do","/grade/list.do","/grade/regist.do",
+		"/grade/search.do","/grade/update.do"})
 public class GradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
