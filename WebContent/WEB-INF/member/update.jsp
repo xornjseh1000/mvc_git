@@ -1,82 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-          <%@ page import="member.MemberBean" %>     
-<%@ page import="member.MemberService" %>     
-<%@ page import="member.MemberServiceImpl" %>    
 
- 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원정보수정</title>
-<link rel="stylesheet" href="${context}/css/member.css" />
-
-<style type="text/css">
-span.meta{width: 200px;background-color:yellow;float: left}
-div.joinDiv{border:1px dotted gray;width: 80%;margin:10px 50px 10px 50px}	
-</style>
-</head>
-<body>
+<link rel="stylesheet" href="${css}/global.css" />
+<link rel="stylesheet" href="${css}/member.css" />
+<jsp:include page="../global/top.jsp"/>
+<jsp:include page="../global/header.jsp"/>
+<jsp:include page="../global/navi.jsp"/>
 <div class="box">
-<% 
-	MemberService service = MemberServiceImpl.getInstance();
-	MemberBean member = service.show();
-	if(member.getId().equals("")){
-%> 		<h2>내정보보기(detail) 실패</h2>
-<%		response.sendRedirect("");		
-	} 
-%>
-		<h1>내정보수정</h1>
-	   <form action="${context}/member/result/update_result.jsp" method="post">
+		<h1>회원 정보 수정</h1>
+		<form action="${context}/member.do" method="post">
 		<table id="member_detail">
+				<tr>
+				<td rowspan="5" style="width:30%">
+				<img src="${img}/member/${user.profileImg}" alt="W3Schools.com" width="104"
+			height="142"></td>
+				<td style="width:20%" class="font_bold bg_color_yellow">ID</td>
+				<td style="width:40%">${user.id}</td>
+			</tr>
+			<tr>
+				
+				<td class="font_bold bg_color_yellow">이 름</td>
+				<td>${user.name}</td>
+			</tr>
+			
+			<tr>
+				
+				<td class="font_bold bg_color_yellow">성 별</td>
+				<td>${user.gender}</td>
+			</tr>
+			<tr>
+				
+				<td class="font_bold bg_color_yellow">비밀번호</td>
+				<td>
+					<input type="text" name="pw" value="${user.pw}" />
+				</td>
+			</tr>
+			<tr>
+				
+				<td class="font_bold bg_color_yellow">이메일</td>
+				<td>
+					<input type="text" name="email" value="${user.email}" />
+				</td>
+			</tr>
+			<tr>
+				<td class="font_bold bg_color_yellow">생년월일</td>
+				<td colspan="2">${user.birth}</td>
+			</tr>
+			<tr>
+				<td class="font_bold bg_color_yellow">등록일</td>
+				<td colspan="2">${user.regDate}</td>
+				
+			</tr>
+		</table>
+	<div style="margin: 0 auto">
+			<input type="hidden" name="action" value="update" />
+			<input type="hidden" name="page" value="detail" />
+			<input type="submit" value="수정" />
+			<input type="reset" value="취소" />
+		</div>
 		
-		<tr>
-			<td rowspan="3" style="width:60%">
-				<img src="${img}/img/<%=member.getId()%>.jpg" alt="W3Schools.com" width="400" height="350">
-			</td>
-			<td class="font_bold bg_color" style="width:20%">ID</td>
-			<td style="width:40%"><%=member.getId()%></td>
-		</tr>
-		<tr>
-			<td class="font_bold bg_color">비밀번호</td>
-			<td>
-			<input type="text" name="pw" value="<%=member.getPw()%>" />
-			</td>
-		</tr>
-		<tr>
-			<td class="font_bold bg_color">이 름</td>
-			<td><%=member.getName()%></td>
-		</tr>
-		<tr>
-			<td class="font_bold bg_color">성 별</td>
-			<td colspan="2"><%=member.getGender()%></td>
-		</tr>
-		<tr>
-			<td class="font_bold bg_color">email</td>
-			<td colspan="2">
-			<input type="text" name="email" value="<%=member.getEmail()%>" />
-			</td>
-		</tr>
-		<tr>
-			<td class="font_bold bg_color">생년월일</td>
-			<td colspan="2"><%=member.getSsn().substring(0,6)%></td>
-		</tr>
-		<tr>
-			<td class="font_bold bg_color">등록일</td>
-			<td colspan="2"><%=member.getRegDate()%></td>
-		</tr>
-	</table>
-	<input type="hidden" name="id" value="<%=service.show().getId() %>"/>
-	<input type="submit" value="수정"/>
-	<input type="reset" value="취소"/>
-	</form>
+		</form>
+		<br /> 
+		<p>
+			
+		</p>
 		<a href="${context}/member/member_controller.jsp">
-			<img src="${img}/img/home.png" alt="회원관리 홈 으로" width="30" height="30">
-		</a>
-		<a href="${context}/index.jsp">
-			<img src="${img}/img/Previous.png" alt="메인 홈 으로" width="30" height="30">
+			<img src="${img}/member.jpg" alt="member" style="width:30px" /></a>
+			<a href="${context}/index.jsp">
+		<img src="${img}/home.png" alt="member" style="width:30px" />
 		</a>
 	</div>
-</body>
-</html>
+
+	<jsp:include page="../global/footer.jsp"/>
+	<jsp:include page="../global/end.jsp"/> 

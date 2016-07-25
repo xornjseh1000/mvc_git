@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="member.MemberService" %>
     <%@ page import="member.MemberServiceImpl" %>
@@ -30,9 +30,9 @@
 	}else{
 		member.setId(id);
 		member.setPw(pw);
-		String name = service.login(member);
-		application.log("DB다녀온 이름:"+name);
-		if(name.equals("")){
+		member = service.login(member);
+		application.log("DB다녀온 이름:"+member);
+		if(member.equals("")){
 			%>
 			<h2>로그인 실패!!</h2>
 			<a href="${context}/member/service/login.jsp">다시 시도하기</a>
@@ -44,4 +44,4 @@
 %>
 </div>	
 </body>
-</html>
+</html> --%>

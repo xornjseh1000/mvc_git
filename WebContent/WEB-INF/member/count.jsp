@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
        
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원가입</title>
-<link rel="stylesheet" href="../../css/member2.css" />
-</head>
-<body>
+<link rel="stylesheet" href="${css}/global.css" />
+<link rel="stylesheet" href="${css}/member.css" />
+<jsp:include page="../global/top.jsp"/>
+<jsp:include page="../global/header.jsp"/>
+<jsp:include page="../global/navi.jsp"/>
 <div class="box">
-	<h1>회원수</h1> 
+	<h1>회원수</h1> <br />
+	<span style="font-size: 50px; color:red">${count} 명 </span>
 	<a href="../../index.jsp">
 		<img src="${img}/home.png" alt="home" style="width: 30px"/>
 	</a>
@@ -18,4 +16,5 @@
 		<img src="${img}/member.jpg" alt="member" style="width: 30px"/>
 	</a>
 </div>
-	
+	<jsp:include page="../global/footer.jsp"/>
+	<jsp:include page="../global/end.jsp"/> 

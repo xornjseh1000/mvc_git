@@ -19,7 +19,7 @@ public interface MemberService extends CommonService{
 	public void update(MemberBean stu2);
 	public String delete(MemberBean member);
 	public void logout(MemberBean member);
-	public String login(MemberBean member);
+	public MemberBean login(MemberBean member);
 	public MemberBean show();
 	
 	

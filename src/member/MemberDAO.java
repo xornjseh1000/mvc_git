@@ -35,9 +35,24 @@ public class MemberDAO {
 		}
 	}
 	public int insert(MemberBean mem){
-		String sql = "insert into member(id,pw,name,reg_date,ssn,email,profile_img)"
-				+ "values('"+mem.getId()+"','"+mem.getPw()+"','"+mem.getName()
-				+"','"+mem.getRegDate()+"','"+mem.getSsn()+"','"+mem.getEmail()+"','"+mem.getSsn()+"')";
+		int result = 0;
+		String sql = "insert into member(id,pw,name,regdate,ssn,email,profile_img,phone)"
+				+ "values(?,?,?,?,?,?,?,?,?)";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mem.getId());
+			pstmt.setString(2, mem.getPw());
+			pstmt.setString(3, mem.getName());
+			pstmt.setString(4, mem.getRegDate());
+			pstmt.setString(5, mem.getSsn());
+			pstmt.setString(6, mem.getEmail());
+			pstmt.setString(7, "default.jpg");
+			pstmt.setString(8, mem.getPhone());
+			result=pstmt.executeUpdate(sql);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return exeUpdate(sql);
 	}
 	public int update(MemberBean mem){
@@ -61,6 +76,7 @@ public class MemberDAO {
 		} else {
 			System.out.println("DAO에서 수정 실패");	
 		}
+		
 		return result;
 		
 	}
@@ -75,10 +91,10 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		
-		if (result==0) {
-			System.out.println("실패");
+		if (result==1) {
+			System.out.println("성공");
 		} else {
-			System.out.println("성공");	
+			System.out.println("실패");	
 		}
 		
 		return result;
@@ -118,26 +134,22 @@ public class MemberDAO {
 	}
 	// findByPK
 	public MemberBean findById(String pk) {
-		String sql = "select * from member where id = '"+pk+"'";
+		String sql = "select * from member where id = ?";
 		MemberBean temp = null;
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(
-					Constants.ORACLE_URL,
-					Constants.USER_ID,
-					Constants.USER_PW
-					);
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pk);
+			rs = pstmt.executeQuery();
 			if(rs.next()){
-				temp = new MemberBean(
-						rs.getString("ID"),
-						rs.getString("PW"),
-						rs.getString("NAME"), 
-						rs.getString("SSN"));
-				temp.setRegDate(rs.getString("REG_DATE"));
+				temp = new MemberBean();
+				temp.setId(rs.getString("ID"));
+				temp.setPw(rs.getString("PW"));
+				temp.setName(rs.getString("NAME"));
 				temp.setEmail(rs.getString("EMAIL"));
+				temp.setRegDate(rs.getString("REG_DATE"));
 				temp.setProfileImg(rs.getString("PROFILE_IMG"));
+				temp.setPhone(rs.getString("PHONE"));
+				System.out.println("DAO에서 ID존재 체크:"+temp.getId());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

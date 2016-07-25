@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.MemberBean" %>     
-<%@ page import="member.MemberService" %>     
-<%@ page import="member.MemberServiceImpl" %>    
+
 
 <!doctype html>
 <html lang="en">
@@ -20,7 +18,7 @@
 </head>
 <body>
 <div class="box">
-<% 
+<%-- <% 
 	MemberService service = MemberServiceImpl.getInstance();
 	MemberBean member = service.show();
 	if(member.getId().equals("")){
@@ -57,7 +55,7 @@
 		<tr>
 			<td class="font_bold bg_color">등록일</td>
 			<td colspan="2"><%=member.getRegDate()%></td>
-		</tr>
+		</tr> --%>
 	</table>
 		<a href="${context}/index.jsp">
 			<img src="${img}/home.png" alt="회원관리 홈 으로" width="30" height="30">

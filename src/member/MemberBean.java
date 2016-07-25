@@ -16,9 +16,18 @@ import java.text.SimpleDateFormat;
 public class MemberBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private String id,pw,pw1,pw2,name,regDate,gender,ssn,profileImg,email; 
+	private String id,pw,pw1,pw2,name,regDate,gender,ssn,profileImg,email,phone; 
+	private int birth;
 	
 	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -27,7 +36,6 @@ public class MemberBean implements Serializable{
 		this.email = email;
 	}
 
-	private int birth;
 	
 	public String getPw1() {
 		return pw1;
@@ -142,35 +150,34 @@ public class MemberBean implements Serializable{
 		return birth;
 	}
 
-	public void setBirth(int birth) {
+	public void setGenderAndBirth(String ssn) {
 		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
-		this.regDate = now;
 		String[] ssnArr = ssn.split("-");
 		String[] nowArr = now.split("-");
-		int ageResult1 = (Integer.parseInt(ssnArr[0]));
-		int genderResult = (Integer.parseInt(ssnArr[1]));
-		int ageResult2 = (Integer.parseInt(nowArr[0]));
-		int ageResult0 = 0;
-		switch (genderResult%2) {
+		int ssnBirth = (Integer.parseInt(ssnArr[0]));
+		int ssnGender = (Integer.parseInt(ssnArr[1]));
+		int thisYear = (Integer.parseInt(nowArr[0]));
+		int age = 0;
+		switch (ssnGender) {
 		case 1: case 5: 
 			this.gender="남"; 
-			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
-			this.birth = ageResult0;
+			System.out.println("올해:"+thisYear);
+			System.out.println("생년월일:"+ssnBirth);
+		//	age = ageResult2 - (1900-(this/10000));
+		//  나이를 구하려고 했으나 일단 보류
+			this.birth = ssnBirth;
 			break;
 		case 3: case 7:
 			this.gender="남"; 
-			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
-			this.birth = ageResult0;
+			this.birth = ssnBirth;
 			break;
 		case 2: case 6:
 			this.gender="여";
-			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
-			this.birth = ageResult0;
+			this.birth = ssnBirth;
 			break;
 		case 4: case 8:
 			this.gender="여";
-			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
-			this.birth = ageResult0;
+			this.birth = ssnBirth;
 			break;
 		default:
 			System.out.println("잘못된값이 입력됨");
